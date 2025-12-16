@@ -276,7 +276,7 @@ export const { use: useSync, provider: SyncProvider } = createSimpleContext({
           if (store.status !== "complete") setStore("status", "partial")
           // non-blocking
           Promise.all([
-            sdk.client.session.list().then((x) =>
+            sdk.client.session.list({ directory: process.cwd() }).then((x) =>
               setStore(
                 "session",
                 (x.data ?? []).toSorted((a, b) => a.id.localeCompare(b.id)),
